@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+</head>
+<body>
+<a th:href="@{/cadastro}">Cadastro</a>
+<a th:href="@{/login}">Login</a>
+<a th:href="@{/contatar}">Contato</a>
+<a th:if="${session.logado != null}" href="/logout">Logout</a>
+<div th:if="${session.logado != null}">
+
+<a th:if="${session.logado.staff}" href="/listar">Listar usuários</a>
+
+</div>
+<a th:href="@{/consumirApi}">Produtos</a>
+
+<div th:if="${session.logado != null}">
+    <p th:text="${session.logado.nome}"></p>
+</div>
+
+<div th:if="${session.logado == null}">
+    <p>Nao esta logado</p>
+</div>
+
+</body>
+</html>

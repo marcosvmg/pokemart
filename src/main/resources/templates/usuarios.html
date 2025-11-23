@@ -1,0 +1,37 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Listas de usuario</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Dinheiro</th>
+        <th>Opções</th>
+    </tr>
+
+    <tr th:each="u : ${usuarios}">
+        <td th:text="${u.id}"></td>
+        <td th:text="${u.nome}"></td>
+        <td th:text="${u.staff}"></td>
+        <td th:text="${u.dinheiro}"></td>
+        <td>
+        <form th:action="@{/excluir/{id}(id=${u.id})}" method="POST" style="display:inline;">
+        <button type="submit">Excluir</button>
+        </form>
+            <form th:action="@{/editar/{id}(id=${u.id})}" method="GET" style="display:inline;">
+                <button type="submit">Editar</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

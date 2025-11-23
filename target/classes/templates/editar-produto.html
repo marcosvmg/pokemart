@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Produto</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<div class="container">
+    <h2>Editar Produto</h2>
+
+    <div th:if="${param.error}" class="msg-error">
+        Ocorreu um erro ao tentar salvar. Verifique os dados
+    </div>
+
+    <form action="/produtos/editar" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="id" th:value="${produto.id}" />
+
+        <div>
+            <label>Nome do Produto:</label>
+            <input type="text" name="nome" th:value="${produto.nome}" required />
+        </div>
+
+        <div>
+            <label>Categoria:</label>
+            <input type="text" name="categoria" th:value="${produto.categoria?.nome}" required />
+        </div>
+
+        <div>
+            <label>Preço (₽):</label>
+            <input type="number" name="preco" step="0.01" th:value="${produto.preco}" required />
+        </div>
+
+        <div>
+            <label>Quantidade:</label>
+            <input type="number" name="qtd" th:value="${produto.qtd}" required />
+        </div>
+
+        <div>
+            <label>Descrição:</label>
+            <textarea name="descricao" rows="4" th:text="${produto.descricao}"></textarea>
+        </div>
+
+        <div>
+            <label>Imagem:</label>
+
+            <div th:if="${produto.imagemUrl != null}">
+                <p>Atual:</p>
+                <img th:src="${produto.imagemUrl}" width="100" class="current-img" />
+            </div>
+
+            <label>Trocar imagem (opcional):</label>
+            <input type="file" name="imagem" accept="image/*" />
+        </div>
+
+        <button type="submit" class="btn-salvar">Salvar Alterações</button>
+
+        <a href="/consumirApi" class="btn-cancelar">Cancelar e Voltar</a>
+
+    </form>
+</div>
+
+</body>
+</html>
